@@ -1,2 +1,6 @@
 # 10mtweet
-10 Minute Tweet
+Ephemeral, anonymous tweets; gone in 600 seconds.
+
+https://10mtweet.netmeister.org/
+
+https://twitter.com/10mtweet

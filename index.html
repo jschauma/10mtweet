@@ -1,0 +1,101 @@
+<HTML>
+  <HEAD>
+    <TITLE>10 Minute Tweet</TITLE>
+  <script type="text/javascript">
+    var count = "140";
+    function limiter(){
+      var tex = document.tenmtweet.msg.value;
+      var len = tex.length;
+      document.tenmtweet.limit.value = count-len;
+    }
+  </script>
+  </HEAD>
+  <BODY>
+  <h1>10 Minute Tweet</h1>
+  <HR>
+  <P>
+    Enter a message below and hit submit.  It will be posted on Twitter by
+    <a href="https://twitter.com/10mtweet">@10mtweet</a>, and
+    deleted approximately 10 minutes later.
+  </P>
+  <P>
+    <FORM name="tenmtweet" action="post.cgi" method="POST">
+    <TABLE border="0">
+      <TR>
+        <TD><textarea id="msg" name="msg" rows="3" cols="80" onkeyup="limiter()"></textarea></TD>
+      </TR>
+      <TR>
+	<TD><input id="limit" readonly type="text" size="3"
+	maxlength="3" value="140">&nbsp;<input type="submit" value="Submit" /></TD>
+      </TR>
+    </TABLE>
+    </FORM>
+  </p>
+  <p>
+    By using this service, you are agreeing to follow the <a
+    href="https://support.twitter.com/articles/18311-the-twitter-rules">Twitter
+    Rules</a> and <a href="https://twitter.com/tos?lang=en">Terms of
+    Service</a>.
+  <HR>
+  <h2>Constraints are friends</h2>
+  <ul>
+    <li><em>No @-mentioning</em>: "@foo" becomes "foo".<br>
+        The idea is that this makes harassment using this account harder.</li>
+    <li><em>No URLs</em>: "http://some.thing.com" becomes "some.thing com".<br>
+        The idea is that this makes spreading spam and malware using this
+        account harder.</li>
+    <li><em>No character counting.</em> If you enter too many characters,
+        your tweet may get (silently) truncated.  Sorry, GIGO.
+    <li><em>No logs.</em>  This apache virtual host is set to only log
+        <tt>"%t \"%r\" %&gt;s"</tt>; error logs strip "[client 1.2.3.4]" as well,
+        and the CGI unsets <tt>REMOTE_ADDR</tt> in the environment.</li>
+    <li><em>No fancy website.</em>  I don't even CSS.</li>
+    <li><em>No guarantees.</em> Stuff might break, tweets might not be
+        deleted after all.  Don't rely on this for anything.
+  </ul>
+  <HR>
+  <h2>What?</h2>
+  <p>
+    This is a service that allows you to send ephemeral, anonymous tweets.
+    You can either use this page, or directly <tt>POST</tt> a
+    <tt>msg=</tt> value to
+    <tt>https://10mtweet.netmeister.org/post.cgi</tt>.  The tweet will be
+    posted to <a href="https://twitter.com/10mtweet">@10mtweet</a> and
+    immediately scheduled for deletion 10 minutes later.
+  </p>
+  <h2>Why?</h2>
+  <p>
+    Anonymous speech is <a
+    href="https://twitter.com/jschauma/status/448081836796030976">important</a>.
+    I'm curious to see if a trivial little service like this can be
+    useful, or <a href="https://twitter.com/jschauma/status/574024148181192704">how long</a> it takes the trolls to turn this into a
+    regrettable shit-show.
+  </p>
+  <h2>How?</h2>
+  <p>
+    This is, as you can tell, rather, uhm, low-frills.  Simple.
+  </p>
+  <p>
+    There's this HTML page and a perl CGI.  The perl CGI frobs the input a
+    bit, then feeds it to my <a
+    href="https://www.netmeister.org/apps/tweet/">tweet(1)</a>
+    command-line client, upon which it uses <tt>at(8)</tt> to schedule the
+    tweet deletion.
+  </p>
+  <p>
+    There's a virtual host on my regular web server with its own
+    certificate (so SNI is required), and a custom log format (IP
+    addresses and client identification is never logged), and that's about
+    it.
+  </p>
+  <p>
+    You can find the whole thing at <a
+    href="https://github.com/jschauma/10mtweet">https://github.com/jschauma/10mtweet</a>.
+    If you find a problem with anything, please <a
+    href="mailto:jschauma@netmeister.org">let me know</a>.
+  </p>
+  <HR>
+<small>Made by <a href="https://twitter.com/jschauma">@jschauma</a>. See
+other <a href="https://www.netmeister.org/blog/">Signs of Triviality</a>.</small>
+  </BODY>
+</HTML>
