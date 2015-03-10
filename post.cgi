@@ -23,6 +23,7 @@ my $TWEET_CMD = "/home/jschauma/bin/tweet -c /home/jschauma/.tweetrc-10mtweet -u
 my $TWEET = "$TWEET_CMD -i -t";
 
 delete($ENV{'REMOTE_ADDR'});
+delete($ENV{'HTTP_USER_AGENT'});
 $ENV{'PATH'} = '/bin:/usr/bin:/usr/pkg/bin';
 
 print "Content-Type: text/html\n\n";
