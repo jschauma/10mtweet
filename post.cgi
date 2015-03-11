@@ -47,7 +47,7 @@ sub cleanMsg($) {
 
 	$msg =~ s/\+/ /g;
 	$msg =~ s/%(..)/pack('c',hex($1))/eg;
-	$msg =~ s/@(\S)/$1/g;
+	$msg =~ s/@+(\S)/$1/g;
 
 	my $finder = URI::Find::Schemeless->new(\&callback);
 	$finder->find(\$msg);
