@@ -1,0 +1,73 @@
+<HTML>
+  <HEAD>
+    <TITLE>Anonymous Likes *</TITLE>
+  </HEAD>
+  <BODY>
+  <h1>Anonymous Likes Every Tweet</h1>
+  <HR>
+  <P>
+    Enter a tweet message ID below and <a
+    href="https://twitter.com/anonylike">@anonylike</a> will
+    fave^W<em>like</em> it.
+  </P>
+  <P>
+    <FORM name="anonylike" action="post.cgi" method="POST">
+    <TABLE border="0">
+      <TR>
+        <TD><input id="msg" name="msg" cols="80"/></TD>
+      </TR>
+      <TR>
+	<TD><input type="submit" value="Submit" /></TD>
+      </TR>
+    </TABLE>
+    </FORM>
+  </p>
+  <HR>
+  <h2>What?</h2>
+  <p>
+    This is a service that allows you to show somebody that you "liked"
+    their tweet, without having to reveal who you are.
+    You can either use this page, or directly <tt>POST</tt> a
+    <tt>msg=</tt> value to
+    <tt>https://10mtweet.netmeister.org/anonylike/post.cgi</tt>.
+  </p>
+  <p>
+    This was very haphazardly slapped together by <a
+    href="https://twitter.com/jschauma">@jschauma</a> after seeing <a
+    href="https://twitter.com/actioncookbook/status/697876267895558144">this
+    tweet</a>.  There's more work to be done, since an account can only
+    "like" a tweet once.  I'll think about how else to express likes,
+    possibly by quoting a tweet in some form.  Check back later.
+  </p>
+  <h2>Why?</h2>
+  <p>
+    Anonymous speech is <a
+    href="https://twitter.com/jschauma/status/448081836796030976">important</a>.
+    I already have a tool that allows you to <a href="../">anonymously tweet a
+    self-destructing message</a>, so why not also allow people to "like" a
+    message?
+  </p>
+  <h2>How?</h2>
+  <p>
+    This is, as you can tell, rather, uhm, low-frills.  Simple.
+  </p>
+  <p>
+    There's this HTML page and a perl CGI.  The perl CGI effectively just
+    feeds the message ID to my <a
+    href="https://www.netmeister.org/apps/tweet/">tweet(1)</a>
+    command-line client.
+  </p>
+  <p>
+    There's a virtual host on my regular web server with its own
+    certificate (so SNI is required), and a custom log format (IP
+    addresses and client identification is never logged), and that's about
+    it.
+  </p>
+    If you find a problem with anything, please <a
+    href="mailto:jschauma@netmeister.org">let me know</a>.
+  </p>
+  <HR>
+<small>Made by <a href="https://twitter.com/jschauma">@jschauma</a>. See
+other <a href="https://www.netmeister.org/blog/">Signs of Triviality</a>.</small>
+  </BODY>
+</HTML>
